@@ -2,8 +2,8 @@ import { QuizQuestion } from "./QuizQuestion/QuizQuestion";
 
 const QuizContainer = () => {
   return (
-    <div>
-      <h3>
+    <div className="">
+      <h3 className="mb-3">
         Well, so here is the quiz, select the right answer and click to next
         question after that
       </h3>
