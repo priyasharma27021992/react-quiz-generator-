@@ -64,31 +64,31 @@ const QuizQuestion = () => {
       <h5>{activeQuestion?.question}</h5>
       <div onChange={onChangeHandler}>
         {activeQuestion?.options.map((option) => (
-          <div className="">
+          <div className="p-0.5">
             <input
               type="radio"
               value={option.value}
               checked={answer === option.value}
             />
-            {option.label}
+            <span className="pl-2">{option.label}</span>
           </div>
         ))}
       </div>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2"
         onClick={submitAnswer}
       >
         Submit
       </button>
       <div className="">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+          className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2"
           onClick={getBackQuestion}
         >
           Back Question
         </button>
         <button
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded my-2 ml-2"
+          className="bg-blue-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md my-2 ml-2"
           onClick={getNextQuestion}
         >
           Next Question
