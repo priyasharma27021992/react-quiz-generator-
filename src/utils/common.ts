@@ -8,6 +8,8 @@ const QUESTIONS_ARRAY = [
       { label: "Angular", value: "angular" },
     ],
     submitted: false,
+    answerred: "",
+    answer: "react",
   },
   {
     id: "2",
@@ -20,12 +22,9 @@ const QUESTIONS_ARRAY = [
       { label: "All the above", value: "all" },
     ],
     submitted: false,
+    answerred: "",
+    answer: "all",
   },
 ];
 
-const ANSWERS_ARRAY = [
-  { id: "1", answer: "react" },
-  { id: "2", answer: "all" },
-];
-
-export { QUESTIONS_ARRAY, ANSWERS_ARRAY };
+export { QUESTIONS_ARRAY };

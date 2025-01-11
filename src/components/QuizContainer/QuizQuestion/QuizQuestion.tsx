@@ -1,10 +1,9 @@
 import { SetStateAction, useState } from "react";
-import { QUESTIONS_ARRAY, ANSWERS_ARRAY } from "../../../utils/common";
-import { questionType } from "../../../utils/types";
+import { QUESTIONS_ARRAY } from "../../../utils/common";
+import classnames from "classnames";
 
 const QuizQuestion = () => {
   const [questions, setQuestions] = useState(QUESTIONS_ARRAY);
-  const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
@@ -25,49 +24,43 @@ const QuizQuestion = () => {
   const submitAnswer = () => {
     const newQuestions = questions.map((question) => {
       if (question.id === activeQuestion.id)
-        return { ...question, submitted: true };
+        return { ...question, submitted: true, answerred: answer };
       return question;
     });
-    const isCorrect = ANSWERS_ARRAY.find((ele) => ele.id)?.answer === answer;
-    const submittedAnswer = submittedAnswers.find((ele) => {
-      if (ele.id === activeQuestion.id) {
-        return ele;
-      }
-    });
-    if (submittedAnswer) {
-      const newSubmittedAnswers = submittedAnswers?.map((c: questionType) => {
-        if (c.id === activeQuestion.id) {
-          return { c, isCorrect, answer };
-        } else {
-          return c;
-        }
-      });
-      setSubmittedAnswers(newSubmittedAnswers);
-    } else {
-      const newSubmittedAnswers = [
-        ...submittedAnswers,
-        { ...activeQuestion, isCorrect, answer },
-      ];
-      console.log("newSubmittedAnswers", newSubmittedAnswers);
-      setSubmittedAnswers(newSubmittedAnswers);
-    }
     setQuestions(newQuestions);
   };
 
   const activeQuestion = questions[activeQuestionIndex];
 
-  console.log(
-    "sub",
-    submittedAnswers,
-    "activeQuestionIndex",
-    activeQuestionIndex
-  );
+  const getOptionColor = (submitted, answerred, answer, value) => {
+    if (submitted && answerred === answer && answer === value) {
+      return "bg-green-500";
+    }
+    if (submitted && answerred !== answer && answer === value) {
+      return "bg-yellow-500";
+    }
+    if (submitted && answerred !== answer && answerred === value) {
+      return "bg-red-500";
+    }
+    return "";
+  };
+
   return (
     <div>
       <h5>{activeQuestion?.question}</h5>
       <div onChange={onChangeHandler}>
         {activeQuestion?.options.map((option) => (
-          <div className="p-0.5">
+          <div
+            className={classnames(
+              "p-0.5",
+              getOptionColor(
+                activeQuestion.submitted,
+                activeQuestion.answerred,
+                activeQuestion.answer,
+                option.value
+              )
+            )}
+          >
             <input
               type="radio"
               value={option.value}
