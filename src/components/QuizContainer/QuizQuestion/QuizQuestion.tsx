@@ -3,7 +3,7 @@ import { QUESTIONS_ARRAY, ANSWERS_ARRAY } from "../../../utils/common";
 import { questionType } from "../../../utils/types";
 
 const QuizQuestion = () => {
-  const [questions, setQuestions] = useState(QUESTIONS_ARRAY)<>;
+  const [questions, setQuestions] = useState(QUESTIONS_ARRAY);
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
