@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { QUESTIONS_ARRAY, ANSWERS_ARRAY } from "../../../utils/common";
+import { questionType } from "../../../utils/types";
 
 const QuizQuestion = () => {
-  const [questions, setQuestions] = useState(QUESTIONS_ARRAY);
+  const [questions, setQuestions] = useState(QUESTIONS_ARRAY)<>;
   const [submittedAnswers, setSubmittedAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setAnswer(e.target.value);
   };
 
@@ -32,7 +35,7 @@ const QuizQuestion = () => {
       }
     });
     if (submittedAnswer) {
-      const newSubmittedAnswers = submittedAnswers?.map((c) => {
+      const newSubmittedAnswers = submittedAnswers?.map((c: questionType) => {
         if (c.id === activeQuestion.id) {
           return { c, isCorrect, answer };
         } else {
