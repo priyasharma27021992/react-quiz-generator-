@@ -46,9 +46,11 @@ const QuizQuestion = () => {
   };
 
   return (
-    <div>
-      <h5>{activeQuestion?.question}</h5>
-      <div onChange={onChangeHandler}>
+    <div className="m-10">
+      <h5 className="font-bold">
+        {`${activeQuestionIndex + 1}. ${activeQuestion?.question}`}
+      </h5>
+      <div onChange={onChangeHandler} className="my-5">
         {activeQuestion?.options.map((option) => (
           <div
             className={classnames(
@@ -71,21 +73,23 @@ const QuizQuestion = () => {
         ))}
       </div>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2"
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md my-2"
         onClick={submitAnswer}
       >
         Submit
       </button>
       <div className="">
         <button
-          className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2 disabled:bg-gray-500"
           onClick={getBackQuestion}
+          disabled={activeQuestionIndex === 0}
         >
           Back Question
         </button>
         <button
-          className="bg-blue-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md my-2 ml-2"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2 ml-2 disabled:bg-gray-500"
           onClick={getNextQuestion}
+          disabled={activeQuestionIndex === QUESTIONS_ARRAY.length - 1}
         >
           Next Question
         </button>
