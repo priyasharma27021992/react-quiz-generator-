@@ -1,9 +1,10 @@
 import { SetStateAction, useState } from "react";
 import { QUESTIONS_ARRAY } from "../../../utils/common";
 import classnames from "classnames";
+import { useQuestions } from "../../../hooks/useQuestions/useQuestion";
 
 const QuizQuestion = () => {
-  const [questions, setQuestions] = useState(QUESTIONS_ARRAY);
+  const { questions, setQuestions } = useQuestions();
   const [answer, setAnswer] = useState("");
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
