@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Modal } from "../modal/Modal";
 
 const AddQuestionForm = () => {
+  const [openPopUp, setoOpenPopUp] = useState(false);
   const inputArr = [
     {
       type: "text",
@@ -35,23 +37,25 @@ const AddQuestionForm = () => {
     });
   };
   return (
-    <form action="">
-      <input name="question" type="text" required />
-      <div>
-        <button onClick={addInput}></button>
-        {arr.map((item, i) => {
-          return (
-            <input
-              onChange={handleChange}
-              value={item.value}
-              key={i}
-              type={item.type}
-            />
-          );
-        })}
-      </div>
-      <button type="submit">Add Question</button>
-    </form>
+    <Modal openModal={openPopUp} closeModal={() => setoOpenPopUp(false)}>
+      <form action="">
+        <input name="question" type="text" required />
+        <div>
+          <button onClick={addInput}></button>
+          {arr.map((item, i) => {
+            return (
+              <input
+                onChange={handleChange}
+                value={item.value}
+                key={i}
+                type={item.type}
+              />
+            );
+          })}
+        </div>
+        <button type="submit">Add Question</button>
+      </form>
+    </Modal>
   );
 };
 
