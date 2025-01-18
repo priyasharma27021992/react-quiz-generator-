@@ -99,6 +99,19 @@ const AddQuestionForm = () => {
               );
             })}
           </div>
+          <div>
+            <label className="mr-2 text-gray-700 text-sm font-bold mb-2">
+              Answer
+            </label>
+            <input
+              name="question"
+              type="textarea"
+              id="question"
+              required
+              placeholder="question"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
           <Button btnName="Submit Question" type="submit"></Button>
         </form>
       </Modal>
