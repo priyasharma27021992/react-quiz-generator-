@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Modal } from "../modal/Modal";
 import { Button } from "../button/Button";
+import { useQuestions } from "../../hooks/useQuestions/useQuestion";
 
 const AddQuestionForm = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
+  const { questions, setQuestions } = useQuestions();
 
-  const [arr, setArr] = useState([
+  const [option, setOption] = useState([
     {
       type: "text",
       id: 1,
@@ -14,7 +16,7 @@ const AddQuestionForm = () => {
   ]);
 
   const addInput = () => {
-    setArr((s) => {
+    setOption((s) => {
       return [
         ...s,
         {
@@ -25,16 +27,21 @@ const AddQuestionForm = () => {
     });
   };
 
-  const handleChange = (e, i) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
     e.preventDefault();
 
-    setArr((s) => {
-      const newArr = s.slice();
-      console.log("e?.target", e, "newArr", newArr);
-      newArr[i].value = e?.target?.value;
+    setOption((s) => {
+      const newoption = s.slice();
+      console.log("e?.target", e, "newoption", newoption);
+      newoption[i].value = e?.target?.value;
 
-      return newArr;
+      return newoption;
     });
+  };
+
+  const submitQuestion = (inputs) => {
+    console.log("inputs", inputs);
+    setQuestions((prev) => [...prev, {}]);
   };
   return (
     <div>
@@ -43,7 +50,7 @@ const AddQuestionForm = () => {
       </div>
 
       <Modal openModal={openPopUp} closeModal={() => setOpenPopUp(false)}>
-        <form action="">
+        <form onSubmit={submitQuestion}>
           <div>
             <label className="mr-2 text-gray-700 text-sm font-bold mb-2">
               Question
@@ -60,7 +67,7 @@ const AddQuestionForm = () => {
             <div className="flex justify-end">
               <Button btnName="Add Options" onClick={addInput} />
             </div>
-            {arr.map((item, i) => {
+            {option.map((item, i) => {
               return (
                 <div className="flex gap-2 my-2">
                   <label className="mr-2 text-gray-700 text-sm font-bold mb-2">
@@ -78,11 +85,7 @@ const AddQuestionForm = () => {
               );
             })}
           </div>
-          <Button
-            onClick={() => {}}
-            btnName="Submit Question"
-            type="submit"
-          ></Button>
+          <Button btnName="Submit Question" type="submit"></Button>
         </form>
       </Modal>
     </div>

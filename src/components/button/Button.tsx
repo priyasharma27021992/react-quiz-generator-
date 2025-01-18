@@ -1,7 +1,7 @@
 import classNames from "classnames";
 
 const Button = ({
-  onClick,
+  onClick = () => {},
   classes = "",
   btnName,
   color = "blue",
