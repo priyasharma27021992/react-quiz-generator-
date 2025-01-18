@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "../modal/Modal";
 import { Button } from "../button/Button";
 import { useQuestions } from "../../hooks/useQuestions/useQuestion";
@@ -12,6 +12,7 @@ const AddQuestionForm = () => {
       type: "text",
       id: 1,
       value: "",
+      label: "",
     },
   ]);
 
@@ -22,6 +23,7 @@ const AddQuestionForm = () => {
         {
           type: "text",
           value: "",
+          label: "",
         },
       ];
     });
@@ -39,9 +41,20 @@ const AddQuestionForm = () => {
     });
   };
 
-  const submitQuestion = (inputs) => {
-    console.log("inputs", inputs);
-    setQuestions((prev) => [...prev, {}]);
+  const submitQuestion = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("inputs", event.target.question.value);
+    setQuestions((prev) => [
+      ...prev,
+      {
+        id: "1",
+        question: event.target.question.value,
+        options: option,
+        submitted: false,
+        answerred: "",
+        answer: event.target.answer.value,
+      },
+    ]);
   };
   return (
     <div>
@@ -58,6 +71,7 @@ const AddQuestionForm = () => {
             <input
               name="question"
               type="textarea"
+              id="question"
               required
               placeholder="question"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
