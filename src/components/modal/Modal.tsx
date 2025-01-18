@@ -13,11 +13,21 @@ const Modal = ({ openModal, closeModal, children }: ModalProps) => {
   if (openModal !== true) return null;
   return (
     <div
-      onClick={handleCloseModal}
       className="fixed inset-0 bg-black flex justify-center items-center bg-opacity-20 backdrop-blur-sm"
+      role="dialog"
     >
-      <div className="p-2 bg-white w-10/12 md:w-1/2 lg:1/3 shadow-inner border-emerald-600 rounded-lg py-5">
-        <div className="w-full p-3 justify-center items-center">{children}</div>
+      <div className="relative p-4 w-full max-w-2xl max-h-full bg-white shadow-inner border-emerald-600 rounded-lg">
+        <div className="flex justify-end py-2">
+          <button onClick={handleCloseModal} className="">
+            X
+          </button>
+        </div>
+
+        <div className="">
+          <div className="w-full p-3 justify-center items-center">
+            {children}
+          </div>
+        </div>
       </div>
     </div>
   );
