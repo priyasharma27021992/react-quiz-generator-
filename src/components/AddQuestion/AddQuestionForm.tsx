@@ -13,7 +13,7 @@ type Option = {
 
 const AddQuestionForm = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { questions, setQuestions } = useQuestions();
+  const { setQuestions } = useQuestions();
 
   const [options, setOptions] = useState<Option[]>([
     {
@@ -80,7 +80,6 @@ const AddQuestionForm = () => {
     form.reset();
     setOpenPopUp(false);
   };
-  console.log("questions", questions);
   return (
     <div>
       <div className="flex justify-end my-2">

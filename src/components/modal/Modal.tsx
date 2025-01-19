@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from "react";
 
 type ModalProps = {
   openModal: boolean;
-  closeModal: () => object;
+  closeModal: () => void;
   children?: ReactElement | ReactNode;
 };
 const Modal = ({ openModal, closeModal, children }: ModalProps) => {
