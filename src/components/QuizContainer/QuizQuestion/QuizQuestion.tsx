@@ -1,5 +1,4 @@
 import { SetStateAction, useState } from "react";
-import { QUESTIONS_ARRAY } from "../../../utils/common";
 import classnames from "classnames";
 import { useQuestions } from "../../../hooks/useQuestions/useQuestion";
 
@@ -45,6 +44,7 @@ const QuizQuestion = () => {
     }
     return "";
   };
+  console.log("questions in QuizQuestion", questions);
 
   return (
     <div className="m-10">
@@ -90,7 +90,7 @@ const QuizQuestion = () => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md my-2 ml-2 disabled:bg-gray-500"
           onClick={getNextQuestion}
-          disabled={activeQuestionIndex === QUESTIONS_ARRAY.length - 1}
+          disabled={activeQuestionIndex === questions.length - 1}
         >
           Next Question
         </button>
