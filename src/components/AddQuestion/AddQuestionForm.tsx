@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "../modal/Modal";
 import { Button } from "../button/Button";
 import { useQuestions } from "../../hooks/useQuestions/useQuestion";
 import { questionType } from "../../utils/types";
+import useFocus from "../../hooks/useRef/useRef";
 
 type Option = {
   id: number;
@@ -13,7 +14,8 @@ type Option = {
 
 const AddQuestionForm = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { setQuestions } = useQuestions();
+  const { setQuestions } = useQuestions<questionType[]>([]);
+  const inputRef = useFocus<HTMLInputElement>(openPopUp);
 
   const [options, setOptions] = useState<Option[]>([
     {
@@ -98,6 +100,7 @@ const AddQuestionForm = () => {
               id="question"
               required
               placeholder="question"
+              ref={inputRef}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>

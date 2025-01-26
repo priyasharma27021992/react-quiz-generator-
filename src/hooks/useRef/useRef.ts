@@ -1,10 +1,12 @@
 import { RefObject, useEffect, useRef } from "react";
 
-export default function useFocus<T extends HTMLElement>(): RefObject<T> {
+export default function useFocus<T extends HTMLElement>(
+  focusedCondition: boolean
+): RefObject<T> {
   const inputRef = useRef<T>(null);
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (focusedCondition) inputRef.current?.focus();
+  }, [focusedCondition]);
 
   return inputRef;
 }
