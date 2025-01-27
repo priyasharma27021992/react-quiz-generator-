@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "../modal/Modal";
 import { Button } from "../button/Button";
 import { useQuestions } from "../../hooks/useQuestions/useQuestion";
-import { questionType } from "../../utils/types";
+import { QuestionType } from "../../utils/types";
 import useFocus from "../../hooks/useRef/useRef";
 
 type Option = {
@@ -14,7 +14,7 @@ type Option = {
 
 const AddQuestionForm = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { setQuestions } = useQuestions<questionType[]>([]);
+  const { setQuestions } = useQuestions<QuestionType[]>([]);
   const inputRef = useFocus<HTMLInputElement>(openPopUp);
 
   const [options, setOptions] = useState<Option[]>([

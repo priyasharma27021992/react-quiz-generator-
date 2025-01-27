@@ -1,11 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { QUESTIONS_ARRAY } from "../utils/common";
-import { questionType } from "../utils/types";
+import { QuestionType } from "../utils/types";
 
 const QuestionContext = createContext();
 
-const QuestionProvider = ({ children }) => {
-  const [questions, setQuestions] = useState<questionType[]>(QUESTIONS_ARRAY);
+const QuestionProvider = ({ children }: { children: ReactNode }) => {
+  const [questions, setQuestions] =
+    useState<Array<QuestionType>>(QUESTIONS_ARRAY);
   return (
     <QuestionContext.Provider value={{ questions, setQuestions }}>
       {children}
