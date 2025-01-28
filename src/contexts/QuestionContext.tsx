@@ -2,7 +2,14 @@ import { createContext, ReactNode, useState } from "react";
 import { QUESTIONS_ARRAY } from "../utils/common";
 import { QuestionType } from "../utils/types";
 
-const QuestionContext = createContext();
+type QuestionContextType = {
+  questions: QuestionType[];
+  setQuestions: React.Dispatch<React.SetStateAction<QuestionType[]>>;
+};
+
+const QuestionContext = createContext<QuestionContextType | undefined>(
+  undefined
+);
 
 const QuestionProvider = ({ children }: { children: ReactNode }) => {
   const [questions, setQuestions] =
