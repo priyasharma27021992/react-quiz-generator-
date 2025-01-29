@@ -32,7 +32,12 @@ const QuizQuestion = () => {
 
   const activeQuestion = questions[activeQuestionIndex];
 
-  const getOptionColor = (submitted, answerred, answer, value) => {
+  const getOptionColor = (
+    submitted: boolean,
+    answerred: "string",
+    answer: "string",
+    value: "string"
+  ) => {
     if (submitted && answerred === answer && answer === value) {
       return "bg-green-500";
     }
